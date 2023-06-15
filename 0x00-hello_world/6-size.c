@@ -22,5 +22,7 @@ int main(void)
 
 	printf("size of a float: %lu byte(s)\n", sizeof(f));
 
+	fprintf(stderr, "[stderr]: Anything]\n");
+
 	return (0);
 }

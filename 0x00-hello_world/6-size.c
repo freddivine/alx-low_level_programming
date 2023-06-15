@@ -1,8 +1,8 @@
 #include <stdio.h>
 
 /**
- * main - Entry point
- * Return: return 0
+ * main - initializing main function
+ * Return: returns 0
  */
 int main(void)
 {
@@ -21,8 +21,6 @@ int main(void)
 	printf("size of a long long int: %lu byte(s)\n", sizeof(lli));
 
 	printf("size of a float: %lu byte(s)\n", sizeof(f));
-
-	fprintf(stderr, "[Anything]\n");
 
 	return (0);
 }

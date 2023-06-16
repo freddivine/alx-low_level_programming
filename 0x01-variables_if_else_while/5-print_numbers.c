@@ -5,14 +5,17 @@
  */
 int main(void)
 {
-	int base, a;
+	int n;
 
-	a = 10;
+	n = 0;
 
-	for (base = 0; base < a; base++)
+	while (n < 10)
 	{
-		printf("%d\n", base);
+		printf("%i", n);
+		n++;
 	}
+
+	putchar('\n');
 
 	return (0);
 }

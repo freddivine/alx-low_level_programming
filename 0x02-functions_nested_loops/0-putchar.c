@@ -10,7 +10,7 @@ int main(void)
 
 	int i = 0;
 
-	while (c[30] != '\0')
+	while (c[i] != '\0')
 	{
 		_putchar(c[i]);
 		i++;

@@ -6,13 +6,13 @@
  */
 int main(void)
 {
-	char p[30] = "_putchar";
+	char c[30] = "_putchar";
 
 	int i = 0;
 
-	while (p[30] != '\0')
+	while (c[30] != '\0')
 	{
-		_putchar(p[i]);
+		_putchar(c[i]);
 		i++;
 	}
 

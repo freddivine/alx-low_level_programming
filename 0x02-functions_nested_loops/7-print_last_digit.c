@@ -1,4 +1,6 @@
 #include "main.h"
+#include <limits.h>
+#include <stdio.h>
 
 /**
  * print_last_digit - Entry point
@@ -18,4 +20,6 @@ int print_last_digit(int n)
 
 	return (last_digit);
 
+	if (n == INT_MIN)
+		printf("%d8", last_digit);
 }

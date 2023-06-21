@@ -5,21 +5,28 @@
  */
 int main(void)
 {
-	int n = 50;
+	int i = 0;
 
-	int sequence[n];
+	long j = 1, k = 2;
 
-	sequence[0] = 1;
-
-	sequence[1] = 2;
-
-	printf("%d, %d", sequence[0], sequence[1]);
-
-	for (int i = 2; i < n; i++)
+	while (i < 50)
 	{
-		sequence[i] = sequence[i - 1] + sequence[i - 2];
-		printf(", %d", sequence[i]);
+		if (i == 0)
+			printf("%ld", j);
+
+		else if (i == 1)
+			printf(", %ld", k);
+
+		else
+		{
+			k += j;
+
+			j = k - j;
+			printf(", %ld", k);
+		}
+		++i;
 	}
+	printf("\n");
 
 	return (0);
 }

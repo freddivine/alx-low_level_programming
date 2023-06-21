@@ -5,24 +5,20 @@
  */
 int main(void)
 {
-	int count;
+	int n = 50;
 
-	unsigned long fib1 = 0, fib2 = 1, sum;
+	int sequence[n];
 
-	for (count = 0; count < 50; count++)
+	sequence[0] = 1;
+
+	sequence[1] = 2;
+
+	printf("%d, %d", sequence[0], sequence[1]);
+
+	for (int i = 2; i < n; i++)
 	{
-		sum = fib1 + fib2;
-
-		printf("%lu", sum);
-
-		fib1 = fib2;
-
-		fib2 = sum;
-
-		if (count == 49)
-			printf("\n");
-		else
-			printf(",");
+		sequence[i] = sequence[i - 1] + sequence[i - 2];
+		printf(", %d", sequence[i]);
 	}
 
 	return (0);

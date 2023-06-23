@@ -10,7 +10,7 @@
  * @n: parameter to check
  * Return: returns 0
  */
-int positive_or_negative(int n)
+void positive_or_negative(int n)
 {
 
 	if (n > 0)

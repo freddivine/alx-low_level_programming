@@ -1,28 +1,27 @@
 #include "main.h"
-#include <stdio.h>
+
 /**
- * more_numbers - Entry point
- * Return: return 0
+ * more_numbers - entry point
  */
 void more_numbers(void)
 {
-	int n, j;
+	int t, i;
 
-	n = 0;
+	t = 0;
 
-	while (n <= 10)
+	while (t <= 10)
 	{
-		j = 0;
+		i = 0;
 
-		while (j <= 14)
+		while (i <= 14)
 		{
-			if (j > 9)
-				_putchar(j / 10 + '0');
-			_putchar(j % 10 + '0');
-			j++;
+			if (i > 9)
+				_putchar(i / 10 + '0');
+			_putchar(i % 10 + '0');
+			i++;
 		}
 		_putchar('\n');
 
-		n++;
+		t++;
 	}
 }

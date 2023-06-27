@@ -1,34 +1,38 @@
 #include "main.h"
-
 /**
- * _atoi - function
- * @s: param
- * Return: returns 0
+ * _atoi - Entry point
+ * @s: the pointer to convert
+ * Return: retrun an integer
  */
 int _atoi(char *s)
 {
-	int sign = 1;
-	int result = 0;
+	int c = 0;
 
-	while (*s)
+	unsigned int ni = 0;
+
+	int min = 1;
+
+	int isi = 0;
+
+	while (s[c])
 	{
-		if (*s == '-')
+		if (s[c] == 45)
 		{
-			sign *= -1;
+			min *= -1;
 		}
-		else if (*s >= '0' && *s <= '9')
+		while (s[c] >= 48 && s[c] <= 57)
 		{
-			result = result * 10;
-
-			result = result + (*s - '0');
+			isi = 1;
+			ni = (ni * 10) + (s[c] - '0');
+			c++;
 		}
-		else if (result > 0)
+		if (isi == 1)
 		{
 			break;
 		}
-
-		s++;
+		c++;
 	}
+	ni *= min;
 
-	return (sign * result);
+	return (ni);
 }

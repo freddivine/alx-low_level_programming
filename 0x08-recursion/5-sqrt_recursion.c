@@ -7,17 +7,14 @@
  *
  * Return: The square root of n if found, -1 otherwise
  */
-int find_sqrt(int i, int n)
+int find_sqrt(int n, int i)
 {
 	if (i * i == n)
 		return (i);
-
 	if (i * i > n)
 		return (-1);
-
 	return (find_sqrt(n, i + 1));
 }
-
 
 /**
  * _sqrt_recursion - Returns the natural square root of a number

@@ -10,10 +10,12 @@
 int find_sqrt(int i, int n)
 {
 	if (i * i == n)
-		return (1);
+		return (i);
 
 	if (i * i > n)
 		return (-1);
+
+	return (find_sqrt(n, i + 1));
 }
 
 

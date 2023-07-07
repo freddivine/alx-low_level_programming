@@ -3,8 +3,8 @@
 
 /**
  * main - main entry point
- * argv - argument vector
- * argc - argument count
+ * @argv: argument vector
+ * @argc: argument count
  * Return: return an integer
  */
 int main(int __attribute__((unused)) argc, char *argv[])

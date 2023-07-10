@@ -1,52 +1,56 @@
-#include "main.h"
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+
+int is_space(char c);
+int count_words(char *str);
+char **strtow(char *str);
+char *get_word(char *str);
+char **free_memory(char **words, int index);
+
+/**
+ * is_space - Checks if a character is a space.
+ * @c: The character to check.
+ *
+ * Return: 1 if c is a space, 0 otherwise.
+ */
+int is_space(char c)
+{
+	return (c == ' ' || c == '\t' || c == '\n');
+}
 
 /**
  * count_words - Counts the number of words in a string.
- * @str: The input string.
+ * @str: The string to count words from.
  *
  * Return: The number of words.
  */
 int count_words(char *str)
 {
-	int count = 0;
-	int in_word = 0;
-	int i;
+	int i, count, len;
 
-	for (i = 0; str[i] != '\0'; i++)
+	len = strlen(str);
+	count = 0;
+
+	for (i = 0; i < len; i++)
 	{
-		if (str[i] == ' ')
-		{
-			if (in_word)
-			{
-				in_word = 0;
-			}
-		}
-		else
-		{
-			if (!in_word)
-			{
-				in_word = 1;
-				count++;
-			}
-		}
+		if (!is_space(str[i]) && (is_space(str[i + 1]) || str[i + 1] == '\0'))
+			count++;
 	}
+
 	return (count);
 }
 
 /**
  * strtow - Splits a string into words.
- * @str: The input string.
+ * @str: The string to split.
  *
- * Return: A pointer to an array of strings (words), or NULL if it fails.
+ * Return: A pointer to an array of strings (words).
  */
 char **strtow(char *str)
 {
 	char **words;
-	int word_count, i, j, k, len;
-	int in_word = 0;
+	int i, j, k, len, word_count;
 
 	if (str == NULL || *str == '\0')
 		return (NULL);
@@ -56,58 +60,69 @@ char **strtow(char *str)
 	if (words == NULL)
 		return (NULL);
 
-	j = 0;
-	len = 0;
-
-	for (i = 0; str[i] != '\0'; i++)
+	for (i = 0, j = 0; i < word_count; i++)
 	{
-		if (str[i] == ' ')
-		{
-			if (in_word)
-			{
-				words[j] = malloc((len + 1) * sizeof(char));
-				if (words[j] == NULL)
-				{
-					for (k = 0; k < j; k++)
-						free(words[k]);
-					free(words);
-					return (NULL);
-				}
+		while (is_space(str[j]))
+			j++;
 
-				strncpy(words[j], str + i - len, len);
-				words[j][len] = '\0';
-
-				in_word = 0;
-				j++;
-				len = 0;
-			}
-		}
-		else
-		{
-			if (!in_word)
-			{
-				in_word = 1;
-			}
+		len = 0;
+		while (!is_space(str[j + len]) && str[j + len] != '\0')
 			len++;
-		}
+
+		words[i] = malloc((len + 1) * sizeof(char));
+		if (words[i] == NULL)
+			return (free_memory(words, i));
+
+		for (k = 0; k < len; k++)
+			words[i][k] = str[j++];
+
+		words[i][k] = '\0';
 	}
 
-	if (in_word)
-	{
-		words[j] = malloc((len + 1) * sizeof(char));
-		if (words[j] == NULL)
-		{
-			for (k = 0; k <= j; k++)
-				free(words[k]);
-			free(words);
-			return (NULL);
-		}
-		strncpy(words[j], str + i - len, len);
-		words[j][len] = '\0';
-
-		j++;
-	}
-
-	words[j] = NULL;
+	words[i] = NULL;
 	return (words);
+}
+
+/**
+ * get_word - Retrieves a single word from a string.
+ * @str: The string to get the word from.
+ *
+ * Return: A pointer to the word.
+ */
+char *get_word(char *str)
+{
+	int i, len;
+	char *word;
+
+	len = 0;
+	while (!is_space(str[len]) && str[len] != '\0')
+		len++;
+
+	word = malloc((len + 1) * sizeof(char));
+	if (word == NULL)
+		return (NULL);
+
+	for (i = 0; i < len; i++)
+		word[i] = str[i];
+
+	word[i] = '\0';
+	return (word);
+}
+
+/**
+ * free_memory - Frees the allocated memory for words.
+ * @words: The array of words.
+ * @index: The index up to which the memory should be freed.
+ *
+ * Return: NULL
+ */
+char **free_memory(char **words, int index)
+{
+	int i;
+
+	for (i = 0; i <= index; i++)
+		free(words[i]);
+
+	free(words);
+	return (NULL);
 }

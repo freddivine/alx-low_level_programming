@@ -2,13 +2,13 @@
 /**
  * create_array - Entry point
  * @size: size of array
- * @value: value of array
+ * @c: value of array
  * Return: returns char value
  */
 char *create_array(unsigned int size, char c)
 {
 	char *m;
-	
+
 	unsigned int i;
 
 	if (size == 0)

@@ -69,6 +69,12 @@ char **strtow(char *str)
 		while (!is_space(str[j + len]) && str[j + len] != '\0')
 			len++;
 
+		if (len == 0)
+		{
+			i--;
+			continue;
+		}
+
 		words[i] = malloc((len + 1) * sizeof(char));
 		if (words[i] == NULL)
 			return (free_memory(words, i));

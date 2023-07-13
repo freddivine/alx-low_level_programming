@@ -1,42 +1,52 @@
 #include "main.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 /**
- * _realloc - function
- * @ptr: param
- * @old_size: param
- * @new_size: param
- * Return: returns ptr
- */
+  * _realloc - ...
+  * @ptr: ...
+  * @old_size: ...
+  * @new_size: ...
+  *
+  * Return: ...
+  */
+
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
-	void *new_ptr;
+	char *nptr;
+	unsigned int i;
 
-	if (new_size == 0)
-	{
-		free(ptr);
-		return (NULL);
-	}
+	if (new_size == old_size)
+		return (ptr);
 
 	if (ptr == NULL)
 	{
-		return (malloc(new_size));
+		nptr = malloc(new_size);
+
+		if (nptr == NULL)
+			return (NULL);
+
+		return (nptr);
+	}
+	else
+	{
+		if (new_size == 0)
+		{
+			free(ptr);
+			return (NULL);
+		}
 	}
 
-	if (new_size == old_size)
-	{
-		return (ptr);
-	}
+	nptr = malloc(new_size);
 
-	new_ptr = malloc(new_size);
-
-	if (new_ptr == NULL)
-	{
+	if (nptr == NULL)
 		return (NULL);
-	}
 
-	memcpy(new_ptr, ptr, (new_size > old_size) ? old_size : new_size);
+	for (i = 0; i < old_size && i < new_size; i++)
+	{
+		nptr[i] = ((char *) ptr)[i];
+	}
 
 	free(ptr);
-
-	return (new_ptr);
+	return (nptr);
 }

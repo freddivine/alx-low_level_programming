@@ -19,11 +19,11 @@ int main(int argc, char **argv)
 		return (1);
 	}
 
-	num_ bytes = atoi(argv[1]);
+	num_bytes = atoi(argv[1]);
 
 	if (num_bytes < 0)
 	{
-		printf("Error\n);
+		printf("Error\n");
 		return (2);
 	}
 

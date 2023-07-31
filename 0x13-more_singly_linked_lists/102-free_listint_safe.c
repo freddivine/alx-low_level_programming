@@ -1,4 +1,5 @@
-#ínclude "lists.h"
+#include "lists.h"
+#include <stdlib.h>
 /**
  * free_listint_safe - Entry point
  * @h: pointer to the first node
@@ -15,8 +16,8 @@ size_t free_listint_safe(listint_t **h)
 
 	while (*h)
 	{
-		diff = *h = (*h)->next;
-		if (diff < 0)
+		diff = *h - (*h)->next;
+		if (diff > 0)
 		{
 			temp = (*h)->next;
 			free(*h);

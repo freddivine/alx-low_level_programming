@@ -25,7 +25,7 @@ void print_elf_header_info(Elf64_Ehdr *header) {
             printf("ELF64\n");
             break;
         default:
-            printf("<unknown: %02x>\n", header->e_ident[EI_CLASS]);
+            print_error("Unknown ELF class");
             break;
     }
     printf("  Data:                              ");
@@ -37,7 +37,7 @@ void print_elf_header_info(Elf64_Ehdr *header) {
             printf("2's complement, big endian\n");
             break;
         default:
-            printf("<unknown: %02x>\n", header->e_ident[EI_DATA]);
+            print_error("Unknown data encoding");
             break;
     }
     printf("  Version:                           %d (current)\n", header->e_ident[EI_VERSION]);
@@ -108,3 +108,4 @@ int main(int argc, char *argv[]) {
     close(fd);
     return 0;
 }
+
